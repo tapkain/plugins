@@ -163,7 +163,9 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
 }
 
 - (instancetype)initWithURL:(NSURL*)url frameUpdater:(FLTFrameUpdater*)frameUpdater {
-  AVPlayerItem* item = [AVPlayerItem playerItemWithURL:url];
+  NSString * mimeType = @"video/mp4";
+  AVURLAsset * asset = [[AVURLAsset alloc] initWithURL:url options:@{@"AVURLAssetOutOfBandMIMETypeKey": mimeType}];
+  AVPlayerItem* item = [AVPlayerItem playerItemWithAsset:asset];
   return [self initWithPlayerItem:item frameUpdater:frameUpdater];
 }
 
